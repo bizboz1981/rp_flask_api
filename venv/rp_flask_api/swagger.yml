@@ -20,6 +20,14 @@ components:
           type: "string"
         lname:
           type: "string"
+  parameters:
+    lname:
+      name: "lname"
+      description: "The last name of the person to get"
+      in: path
+      required: true
+      schema:
+        type: "string"
 
 paths:
   /people:
@@ -31,3 +39,45 @@ paths:
       responses:
         "200":
           description: "Successfully read people list"
+    post:
+      operationId: "people.create"
+      tags:
+        - People
+      summary: "create a new person"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              x-body-name: "person" 
+              $ref: "#/components/schemas/Person"
+      responses:
+        "201":
+          description: "Successfully created a new person"
+  /people/{lname}:
+    get:
+      operationId: "people.read_one"
+      tags:
+        - People
+      summary: "read a person"
+      parameters:
+        - $ref: "#/components/parameters/lname"
+      responses:
+        "200":
+          description: "Successfully read person"
+    put:
+      tags:
+        - People
+      operationId: "people.update"
+      summary: "update a person"
+      parameters:
+        - $ref: "#/components/parameters/lname"
+      responses:
+        "200":
+          description: "Successfully updated person"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "person" 
+              $ref: "#/components/schemas/Person"
