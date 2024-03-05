@@ -9,6 +9,18 @@ info:
 servers:
   - url: "/api"
 
+components:
+  schemas:
+    Person:
+      type: "object"
+      required:
+        - lname
+      properties:
+        fname:
+          type: "string"
+        lname:
+          type: "string"
+
 paths:
   /people:
     get:
