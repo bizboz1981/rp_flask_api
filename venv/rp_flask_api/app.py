@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template
 import connexion # this simplifies using Swagger/OpenAPI specs for RESTful APIs
+import people
 
 app = connexion.App(__name__, specification_dir='./') # The API is initialized using Connexion rather than Flask directly. This allows the API to be configured based on a Swagger/OpenAPI specification file (swagger.yml) in the current directory.
 app.add_api("swagger.yml") # tells Connexion to read the swagger.yml file and create API endpoints accordingly. This means the API's structure, endpoints, and their specifications are defined within swagger.yml.

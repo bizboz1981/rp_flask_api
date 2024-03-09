@@ -1,7 +1,7 @@
 # people.py
 
 from datetime import datetime
-from flask import abort
+from flask import abort, make_response
 
 def get_timestamp():
     return datetime.now().strftime(("%Y-%m-%d %H:%M:%S"))
@@ -61,15 +61,14 @@ def update(lname, person):
             404, f"Person with last name {lname} not found"
         )
 
-# create a new person by passing a dictionary to the create() function. returns a tuple where the first element is the created person's dictionary and the second element is the HTTP status code.
-new_person = {
-    "lname": "Doe",
-    "fname": "John"
-}
-result, status_code = create(new_person)
+def delete(lname):
+    if lname in PEOPLE:
+        del PEOPLE[lname]
+        return make_response(
+            f"{lname} successfully deleted", 200
+        )
+    else:
+        abort(
+            404, f"Person with last name {lname} not found"
+        )
 
-# Call the update function
-updated_person = {
-    "fname": "Jane"
-}
-result = update("Ruprecht", updated_person)
