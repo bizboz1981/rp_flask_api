@@ -14,4 +14,4 @@ def home():
     return render_template('home.html') # Uses the render_template() function to render the home.html template. This integrates the Flask application with a front-end, providing a UI accessible via the web browser.
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8000, debug=True) # checks if the script is executed as the main program and runs the app on localhost (0.0.0.0) at port 8000 with debug mode enabled. Debug mode allows for more verbose output in the console and automatic reloading upon file changes.
+    app.run(host="0.0.0.0", port=8000, log_level="debug") # checks if the script is executed as the main program and runs the app on localhost (0.0.0.0) at port 8000 with debug mode enabled. Debug mode allows for more verbose output in the console and automatic reloading upon file changes.
